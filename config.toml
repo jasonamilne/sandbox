@@ -1,0 +1,53 @@
+# 3D Grid Simulation Configuration
+
+[grid]
+# Grid dimensions (x, y, z)
+# Current implementation: 20x20x20 (can be changed in src/main.rs)
+width = 20
+height = 20
+depth = 20
+
+[simulation]
+# Number of frames between updates (lower = faster simulation)
+# Current implementation: 15 frames (approximately 4 updates per second at 60 FPS)
+update_interval = 15
+
+[rules]
+# Simulation rules (3D Game of Life variant)
+# Current implementation in src/main.rs:
+# - Survival range: 4-5 neighbors for a living cell to survive
+# - Birth: exactly 5 neighbors for a dead cell to become alive
+survival_min = 4
+survival_max = 5
+birth = 5
+
+[graphics]
+# Window dimensions
+window_width = 1200
+window_height = 800
+
+# Camera settings
+camera_distance = 30.0
+auto_rotate_speed_y = 0.005
+auto_rotate_speed_x = 0.003
+
+# Visual settings
+cell_size = 0.8
+cell_spacing = 1.0
+
+[performance]
+# Enable parallel processing (requires rayon dependency - not yet implemented)
+parallel = false
+
+# Number of threads for parallel processing (0 = auto-detect)
+threads = 0
+
+# Target FPS
+target_fps = 60
+
+[output]
+# Print controls and info to console on startup
+verbose = true
+
+# Note: To apply these settings, you need to modify src/main.rs
+# This file serves as documentation of configurable parameters
