@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-# Graphics and windowing
-macroquad = "0.4"
+# Graphics and windowing - using version 0.3 for better compatibility
+macroquad = "0.3"
 
 # Add rayon for parallel processing when scaling up
 # rayon = "1.10"

@@ -55,12 +55,14 @@ The simulation uses **macroquad**, a graphics library that requires:
 
 Dev containers and Codespaces are **headless environments** (no display), so graphical windows cannot be shown.
 
-The error you encountered:
+The error you'll see:
 ```
-X11 backend failed: LibraryNotFound
+XOpenDisplay() failed!
 ```
 
-This means the library tried to connect to a display but couldn't find one (because there isn't one in a container).
+This means the library tried to connect to a display server but couldn't find one (because there isn't one in a container).
+
+**Good news**: The code compiles successfully! It just needs a display to run.
 
 ---
 
