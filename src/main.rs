@@ -92,19 +92,20 @@ impl Grid3D {
                     let current = self.get(x, y, z).unwrap();
                     let index = self.get_index(x, y, z);
                     
-                    // Example rules (can be customized):
-                    // - A living cell survives if it has 4-5 neighbors
-                    // - A dead cell becomes alive if it has exactly 5 neighbors
+                    // 3D Life rules (more permissive for 26-neighborhood):
+                    // - A living cell survives if it has 5-7 neighbors
+                    // - A dead cell becomes alive if it has 6-7 neighbors
+                    // These rules create more stable and interesting patterns in 3D
                     new_cells[index] = match current {
                         Cell::Alive => {
-                            if (4..=5).contains(&neighbors) {
+                            if (5..=7).contains(&neighbors) {
                                 Cell::Alive
                             } else {
                                 Cell::Empty
                             }
                         }
                         Cell::Empty => {
-                            if neighbors == 5 {
+                            if (6..=7).contains(&neighbors) {
                                 Cell::Alive
                             } else {
                                 Cell::Empty
@@ -155,23 +156,40 @@ async fn main() {
     let mut grid = Grid3D::new(20, 20, 20);
     
     // Initialize with a more interesting pattern
-    // Create a glider-like structure in 3D
-    for x in 8..12 {
-        for y in 8..12 {
-            for z in 8..12 {
-                if (x + y + z) % 3 == 0 {
-                    grid.set(x, y, z, Cell::Alive);
-                }
+    // Create multiple structures that should evolve
+    println!("Initializing grid with patterns...");
+    
+    // Central cluster
+    for x in 9..11 {
+        for y in 9..11 {
+            for z in 9..11 {
+                grid.set(x, y, z, Cell::Alive);
             }
         }
     }
+    
+    // Add some surrounding cells to create evolution
+    grid.set(8, 10, 10, Cell::Alive);
+    grid.set(11, 10, 10, Cell::Alive);
+    grid.set(10, 8, 10, Cell::Alive);
+    grid.set(10, 11, 10, Cell::Alive);
+    grid.set(10, 10, 8, Cell::Alive);
+    grid.set(10, 10, 11, Cell::Alive);
+    
+    // Add a few more scattered cells for interest
+    grid.set(7, 9, 10, Cell::Alive);
+    grid.set(12, 10, 10, Cell::Alive);
+    grid.set(10, 7, 10, Cell::Alive);
+    grid.set(10, 12, 10, Cell::Alive);
+    
+    println!("Initial alive cells: {}", grid.count_alive());
     
     let mut rotation_x: f32 = 0.0;
     let mut rotation_y: f32 = 0.0;
     let mut auto_rotate = true;
     let mut paused = false;
     let mut frame_count = 0;
-    let update_interval = 15; // Update simulation every N frames
+    let update_interval = 20; // Update simulation every N frames (slower for better observation)
     
     println!("=== 3D Grid Simulation ===");
     println!("Controls:");

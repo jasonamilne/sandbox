@@ -40,12 +40,15 @@ The simulation starts with a 20×20×20 grid containing a structured pattern:
 
 ## Simulation Behavior
 
-The grid follows 3D Game of Life rules:
-- **Survival**: Cells with 4-5 neighbors stay alive
-- **Birth**: Empty cells with exactly 5 neighbors become alive  
+## Simulation Rules
+
+The default implementation uses a 3D Game of Life variant with 26-connectivity:
+
+- **Survival**: Living cells with 5-7 neighbors survive
+- **Birth**: Dead cells with 6-7 neighbors become alive  
 - **Death**: All other cells die
 
-Updates happen every 15 frames (~quarter second at 60 FPS).
+Updates happen every 20 frames (~1/3 second at 60 FPS).
 
 ## Visual Features
 
@@ -67,10 +70,10 @@ Updates happen every 15 frames (~quarter second at 60 FPS).
 ## Example Evolution
 
 ```
-Initial: ~40-50 alive cells (structured pattern)
-Step 1-5: Pattern expands and reorganizes
-Step 5-10: May stabilize or continue evolving
-Step 10+: Depends on rule outcomes
+Initial: ~20 alive cells (structured cluster + extensions)
+Step 1-3: Pattern expands outward
+Step 4-10: May stabilize, oscillate, or grow
+Step 10+: Creates interesting 3D structures
 ```
 
 The 3D nature means patterns can evolve in ways impossible in 2D,

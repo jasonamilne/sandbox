@@ -9,17 +9,19 @@ depth = 20
 
 [simulation]
 # Number of frames between updates (lower = faster simulation)
-# Current implementation: 15 frames (approximately 4 updates per second at 60 FPS)
-update_interval = 15
+# Current implementation: 20 frames (approximately 3 updates per second at 60 FPS)
+update_interval = 20
 
 [rules]
 # Simulation rules (3D Game of Life variant)
 # Current implementation in src/main.rs:
-# - Survival range: 4-5 neighbors for a living cell to survive
-# - Birth: exactly 5 neighbors for a dead cell to become alive
-survival_min = 4
-survival_max = 5
-birth = 5
+# - Survival range: 5-7 neighbors for a living cell to survive
+# - Birth: 6-7 neighbors for a dead cell to become alive
+# These rules are optimized for 3D (26-neighbor) space
+survival_min = 5
+survival_max = 7
+birth_min = 6
+birth_max = 7
 
 [graphics]
 # Window dimensions

@@ -91,11 +91,11 @@ The basic simulation creates a 10x10x10 grid and runs for 10 steps. To customize
 
 The default implementation uses a 3D Game of Life variant with 26-connectivity:
 
-- **Survival**: Living cells with 4-5 neighbors survive
-- **Birth**: Dead cells with exactly 5 neighbors become alive
+- **Survival**: Living cells with 5-7 neighbors survive
+- **Birth**: Dead cells with 6-7 neighbors become alive
 - **Death**: All other cells die or remain empty
 
-These rules can be customized in the code.
+These rules are specifically tuned for 3D (26-neighbor) space to create stable, evolving patterns. The rules can be customized in the code.
 
 ## Scaling for Large Grids
 
